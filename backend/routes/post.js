@@ -5,9 +5,11 @@ const router = express.Router();
 // CREATE OPERATION
 router.post("/", function(req, res) {
     const post = new Post({
+        date: req.body.date,
         title: req.body.title,
         content: req.body.content,
-        date: req.body.date
+        featured: req.body.featured,
+        text: req.body.text
     })
     post.save().
         then(post => {
