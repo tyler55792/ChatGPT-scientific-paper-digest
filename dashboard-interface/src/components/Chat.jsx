@@ -24,11 +24,15 @@ function Chat() {
 
     const submitClick = async () => {
         const queryObj = {
-            source: postObj.sourceID,
-            query: query,
-        }
-        // make it object with messages key holding list of messages
+            sourceId: postObj.sourceID,
 
+            // TODO: limit messages to 6 
+            messages: [...chatHistory, {
+                "role": "user",
+                "content": query
+            }]
+        }
+        
         try {
             const response = await fetch('http://localhost:3000/api/chat', {
                 method: 'POST',
@@ -41,9 +45,16 @@ function Chat() {
             if (response.ok) {
                 console.log('Query was successful');
                 const responseData = await response.json();
-                const newChatHistory = [...chatHistory, query, responseData.content];
+                const newChatHistory = [...chatHistory, 
+                    {
+                        "role": "user",
+                        "content": query
+                    }, 
+                    {
+                        "role": "assistant",
+                        "content": responseData.content
+                    }];
                 setChatHistory(newChatHistory);
-
                 setQuery('');
             } else {
                 console.error('Query request failed');
@@ -65,8 +76,8 @@ function Chat() {
             </object>
             <div className="GPT-box">
                 <div className="chat-history">
-                    {chatHistory.map((message, index) => (
-                        <div key={index} className="chat-message">{message}</div>
+                    {chatHistory.map((obj, index) => (
+                        <div key={index} className={obj.role}>{obj.content}</div>
                     ))}
                 </div>
                 <div className="query-field">

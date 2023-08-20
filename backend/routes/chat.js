@@ -5,7 +5,7 @@ const axios = require("axios");
 const router = express.Router();
 
 // query chatPDF
-const queryGPT = async (source, query) => {
+const queryGPT = async (dataObj) => {
     try {
         const config = {
             headers: {
@@ -16,13 +16,7 @@ const queryGPT = async (source, query) => {
 
         const data = {
             referenceSources: true,
-            sourceId: source,
-            messages: [
-              {
-                role: "user",
-                content: query,
-              },
-            ],
+            ...dataObj
           };
 
         const response = await axios.post("https://api.chatpdf.com/v1/chats/message", data, config);
@@ -37,7 +31,7 @@ const queryGPT = async (source, query) => {
 router.post("/", async function(req, res) {
     try {
         // chatPDF response to query
-        const responseObj = await queryGPT(req.body.source, req.body.query);
+        const responseObj = await queryGPT(req.body);
 
         res.status(201).json(responseObj);
 
