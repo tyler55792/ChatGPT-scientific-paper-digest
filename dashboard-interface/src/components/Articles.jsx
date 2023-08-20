@@ -16,10 +16,10 @@ function Articles() {
             })
     }, [articles]);
 
-    const deleteClick = async (id) => {
+    const deleteClick = async (id, sourceID) => {
         try {
             const response = await fetch(
-                `http://localhost:3000/api/posts/${id}`,
+                `http://localhost:3000/api/posts/${id}?sourceID=${sourceID}`,
                 {method:"DELETE"});
             if (response.ok) {
                 //update page
@@ -46,6 +46,7 @@ function Articles() {
                 content={post.content} 
                 date={post.date} 
                 id={post._id} 
+                sourceID={post.sourceID}
                 deleteClick={deleteClick}/>
         })}
       </div>

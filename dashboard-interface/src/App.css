@@ -135,3 +135,13 @@
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 }
 
+/* Chat Page */
+.chat-body{
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+.pdf-box {
+  width: 50%;
+}
+

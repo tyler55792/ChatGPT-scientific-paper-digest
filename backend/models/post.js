@@ -6,7 +6,8 @@ const PostSchema = new Schema({
     content: {type: String, required: true},
     date: {type: String, required: true},
     featured: {type: Boolean, required: true},
-    url: {type: String, required: false}
+    url: {type: String, required: false},
+    sourceID: {type: String, required: false}
 })
 
 module.exports = mongoose.model("Post", PostSchema);

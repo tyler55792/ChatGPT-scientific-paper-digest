@@ -1,10 +1,5 @@
 import { useState } from 'react';
-import Header from "./Header.jsx"
-
-// new use state vars
-// new divs for input
-// update post object
-// update styling
+import Header from "./Header.jsx";
 
 function Create() {
     const [date, setDate] = useState('');
