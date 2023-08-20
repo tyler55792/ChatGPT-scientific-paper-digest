@@ -9,10 +9,10 @@ router.post("/", function(req, res) {
         title: req.body.title,
         content: req.body.content,
         featured: req.body.featured,
-        text: req.body.text
+        url: req.body.url
     })
-    post.save().
-        then(post => {
+    post.save()
+        .then(post => {
             res.status(201).json({
                 message: "Succesfully created in db!",
                 post: {
@@ -28,10 +28,21 @@ router.post("/", function(req, res) {
 
 // READ OPERATION
 router.get("/", function(req, res) {
-    Post.find().
-        then(post => {
+    Post.find()
+        .then(posts => {
             res.status(200).json({
-                posts: post
+                posts: posts
+            })
+        })
+})
+
+router.get("/:id", function(req, res) {
+    const id =req.params.id;
+
+    Post.findOne({_id: id})
+        .then(post => {
+            res.status(200).json({
+                post: post
             })
         })
 })
@@ -44,8 +55,8 @@ router.put("/:id", function(req, res) {
         content: req.body.content,
         date: req.body.date
     })
-    Post.replaceOne({_id: req.params.id}, post).
-        then(result => {
+    Post.replaceOne({_id: req.params.id}, post)
+        .then(result => {
             res.status(200).json({post: result})
         }).catch(e=> {
             console.log(e)
@@ -54,8 +65,8 @@ router.put("/:id", function(req, res) {
 
 // DELETE OPERAITON
 router.delete("/:id", function(req, res) {
-    Post.deleteOne({_id: req.params.id}).
-        then(() => {
+    Post.deleteOne({_id: req.params.id})
+        .then(() => {
             res.status(200).json({message: "complete"})
         }).catch(e=> {
             console.log(e)

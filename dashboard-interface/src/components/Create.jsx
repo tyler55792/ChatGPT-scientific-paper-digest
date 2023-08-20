@@ -10,14 +10,14 @@ function Create() {
     const [date, setDate] = useState('');
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
-    const [text, setText] = useState('');
+    const [url, setUrl] = useState('');
 
     const submitClick = async () => {
         const postObject = {
             date: date,
             title: title,
             content: content,
-            text: text,
+            url: url,
             featured: false
         }
 
@@ -34,7 +34,7 @@ function Create() {
                 setDate('');
                 setTitle('');
                 setContent('');
-                setText('');
+                setUrl('');
                 console.log('Post was successful');
             } else {
                 console.error('Post request failed');
@@ -76,12 +76,12 @@ function Create() {
                 />
             </div>
             <div className="text-field">
-                <div>Text</div>
+                <div>URL</div>
                 <textarea 
                     type="text" 
-                    className="text-input"
-                    value={text}
-                    onChange={(e) => setText(e.target.value)}
+                    className="url-input"
+                    value={url}
+                    onChange={(e) => setUrl(e.target.value)}
                 />
             </div>
             <button onClick={submitClick} className="create-button">

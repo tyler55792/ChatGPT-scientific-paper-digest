@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 function Article({id, title, content, date, deleteClick}) {
 
@@ -13,6 +14,9 @@ function Article({id, title, content, date, deleteClick}) {
         <div className="article-content">
             {content}
         </div>
+        <Link to={`/${id}`} className="chatLink">
+            Ask GPT
+        </Link>
         <button onClick={() => deleteClick(id)} className="delete-button">
             Delete
         </button>
@@ -25,7 +29,7 @@ Article.propTypes = {
     date: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired,
-    deleteClick: PropTypes.func.isRequired
+    deleteClick: PropTypes.func.isRequired,
 };
   
 export default Article;
