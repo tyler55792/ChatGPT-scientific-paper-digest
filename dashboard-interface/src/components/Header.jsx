@@ -4,7 +4,9 @@ function Header() {
 
     return(
         <div className="header-body">
-            <img src="../../public/blogLogo.png" className="logo"/>
+            <Link to="/featured" className="logo-link">
+                <img src="../../public/logo5.png" className="logo"/>
+            </Link>
             <div className='links'>
                 <Link to="/featured" className="featured">
                     Featured
@@ -16,9 +18,9 @@ function Header() {
                     Create
                 </Link>
             </div>
-            <div className='profile'>
-                Profile
-            </div>
+            <a href='https://github.com/tyler55792/ChatGPT-scientific-paper-digest' className='git-logo-link'>
+                <img src="../../public/gitLogo.png" className="git-logo"/>
+            </a>
         </div>
     )
 }

@@ -53,7 +53,7 @@ function Articles() {
     return (
         <div className="articles-body">
             <div className='latest-stories'>
-                Latest Articles
+                Browse
             </div>
             {articles.map((post) => {
                 return <Article 

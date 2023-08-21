@@ -53,13 +53,10 @@ function Chat() {
         setLoadingClass('loading');
         
         // send the last 5 messages as context with with current query
-        const contextChatHistory = chatHistory.slice(-6);
+        const contextChatHistory = newChatHistory.slice(-6);
         const queryObj = {
             sourceId: postObj.sourceID,
-            messages: [...contextChatHistory, {
-                "role": "user",
-                "content": query
-            }]
+            messages: contextChatHistory
         }
         
         try {
@@ -72,18 +69,13 @@ function Chat() {
             });
 
             if (response.ok) {
-                console.log('Query was successful');
                 const responseData = await response.json();
-                const newChatHistory = [...chatHistory,
-                    {
-                        "role": "user",
-                        content: query
-                    },
+                const newChatHistory2 = [...newChatHistory,
                     {
                         "role": "assistant",
                         "content": responseData.content
                     }];
-                setChatHistory(newChatHistory);
+                setChatHistory(newChatHistory2);
                 setLoadingClass('loading inactive')
             } else {
                 console.error('Query request failed');

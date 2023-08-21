@@ -42,6 +42,11 @@ function Create() {
     return (
       <>
         <Header />
+        <div className="articles-body">
+            <div className='latest-stories'>
+                Create
+            </div>
+        </div>
         <div className='create-body'>
             <div className="date-field">
                 <div>Date</div>
@@ -70,7 +75,7 @@ function Create() {
                     onChange={(e) => setContent(e.target.value)}            
                 />
             </div>
-            <div className="text-field">
+            <div className="url-field">
                 <div>URL</div>
                 <textarea 
                     type="text" 

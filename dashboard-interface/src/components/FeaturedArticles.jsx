@@ -53,7 +53,7 @@ function FeaturedArticles() {
     return (
         <div className="articles-body">
             <div className='latest-stories'>
-                Featured Articles
+                Featured
             </div>
                 {articles
                     .filter((post) => post.featured === true)
