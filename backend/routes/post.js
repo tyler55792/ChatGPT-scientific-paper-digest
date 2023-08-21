@@ -5,6 +5,7 @@ const axios = require("axios");
 const router = express.Router();
 
 // Store PDF in database using chatPDF's API
+// Guidance from chatPDF's API documentaiton
 const storePDF = async (pdfUrl) => {
     try {
         const config = {
@@ -28,6 +29,7 @@ const storePDF = async (pdfUrl) => {
 };
 
 // Delete PDF from database using chatPDF's API
+// Guidance from chatPDF's API documentaiton
 const deletePDF = async (sourceID) => {
     try {
         const config = {
@@ -53,7 +55,7 @@ const deletePDF = async (sourceID) => {
 // CREATE OPERATION
 router.post("/", async function(req, res) {
     try {
-        // get reference to stored PDF in chatPDF, save this in MongoDB
+        // get reference to stored PDF in chatPDF
         const sourceID = await storePDF(req.body.url);
 
         const post = new Post({
@@ -75,22 +77,22 @@ router.post("/", async function(req, res) {
             },
         });
     } catch (error) {
-        console.log(error);
-        res.status(500).json({
-            message: "An error occurred",
-            error: error.message,
-        });
+        console.log('Error: ', error);
+        res.status(500).json({message: "Internal server error"});
     }
 });
 
 
 // READ OPERATION
 router.get("/", function(req, res) {
-    Post.find()
+    Post.find().sort({date: -1})
         .then(posts => {
             res.status(200).json({
                 posts: posts
             })
+        }).catch((error) => {
+            console.log('Error: ', error)
+            res.status(500).json({ message: "Internal server error" })
         })
 })
 
@@ -102,6 +104,9 @@ router.get("/:id", function(req, res) {
             res.status(200).json({
                 post: post
             })
+        }).catch((error) => {
+            console.log('Error: ', error)
+            res.status(500).json({ message: "Internal server error" })
         })
 })
 
@@ -114,8 +119,8 @@ router.put("/:id", function(req, res) {
             { $set: { featured: newFeaturedValue } })
         .then(()=> {
             res.status(200).json({ message: "Post updated succesfully"})
-        }).catch(e=> {
-            console.log(e)
+        }).catch((error) => {
+            console.log('Error: ', error)
             res.status(500).json({ message: "Internal server error" })
         })
 })
@@ -125,9 +130,10 @@ router.delete("/:id", function(req, res) {
     // delete from MongoDB 
     Post.deleteOne({_id: req.params.id})
         .then(() => {
-            res.status(200).json({message: "complete"})
-        }).catch(e=> {
-            console.log(e)
+            res.status(200).json({message: "Post deleted succesfully"})
+        }).catch((error)=> {
+            console.log('Error: ', error)
+            res.status(500).json({message: "Internal server error"})
         })
     
     // delete from chatPDF databse

@@ -1,16 +1,9 @@
-import './App.css'
-import Header from "./components/Header.jsx"
-import Articles from "./components/Articles.jsx"
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import Router from './components/router.jsx'
 
-function App() {
-
-
-  return (
-    <div className='main'>
-        <Header />
-        <Articles />
-    </div>
-  )
-}
-
-export default App
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <Router />
+  </React.StrictMode>,
+)

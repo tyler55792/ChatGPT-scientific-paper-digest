@@ -12,7 +12,7 @@ function FeaturedArticles() {
                 setArticles(data.posts)
             })
             .catch(error => {
-                console.error('Error:', error)
+                console.error('Error: ', error)
             })
     }, [articles]);
 
@@ -29,8 +29,8 @@ function FeaturedArticles() {
             } else {
                 console.error('Delete request failed');
             }
-        } catch (e) {
-            console.log('Error:', e)
+        } catch (error) {
+            console.log('Error:', error)
         }
     }
 
@@ -45,8 +45,8 @@ function FeaturedArticles() {
             } else {
                 console.error('Update request failed');
             }
-        } catch (e) {
-            console.log('Error: ', e)
+        } catch (error) {
+            console.log('Error: ', error)
         }
     }
 

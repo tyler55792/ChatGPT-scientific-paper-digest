@@ -30,7 +30,7 @@ function Articles() {
                 console.error('Delete request failed');
             }
         } catch (e) {
-            console.log('Error:', e)
+            console.log('Error: ', e)
         }
     }
 
@@ -40,7 +40,6 @@ function Articles() {
                 `http://localhost:3000/api/posts/${id}?featured=${featured}`,
                 { method: "PUT"});
             if (response.ok) {
-                //update page
                 console.log('Update succcessful');
             } else {
                 console.error('Update request failed');

@@ -35,7 +35,7 @@ function Create() {
                 console.error('Post request failed');
             }
         } catch (error) {
-            console.error('Error occurred:', error);
+            console.error('Error: ', error);
         }
     };
 

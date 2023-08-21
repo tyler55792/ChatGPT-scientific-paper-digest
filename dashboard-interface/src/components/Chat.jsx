@@ -21,7 +21,7 @@ function Chat() {
                 setpostObj(data.post)
             })
             .catch(error => {
-                console.error('Error:', error)
+                console.error('Error: ', error)
             })
     }, []);
 
@@ -81,7 +81,7 @@ function Chat() {
                 console.error('Query request failed');
             }
         } catch (error) {
-            console.error('Error occurred:', error);
+            console.error('Error: ', error);
         }
     };
 

@@ -4,7 +4,8 @@ const axios = require("axios");
 
 const router = express.Router();
 
-// query chatPDF
+// query chatPDF 
+// Guidance from chatPDF's API documentaiton
 const queryGPT = async (dataObj) => {
     try {
         const config = {
@@ -36,11 +37,8 @@ router.post("/", async function(req, res) {
         res.status(201).json(responseObj);
 
     } catch (error) {
-        console.log(error);
-        res.status(500).json({
-            message: "An error occurred",
-            error: error.message,
-        });
+        console.log('Error: ', error);
+        res.status(500).json({message: "Internal server error"});
     }
 });
 

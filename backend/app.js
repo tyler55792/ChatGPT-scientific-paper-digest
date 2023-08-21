@@ -16,7 +16,6 @@ async function main() {
     await mongoose.connect(mongoDB)
 }
 
-
 const app = express();
 app.use(cors());
 app.use(bodyParser.json())
