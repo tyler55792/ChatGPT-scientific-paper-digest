@@ -107,17 +107,16 @@ router.get("/:id", function(req, res) {
 
 // UPDATE OPERATION
 router.put("/:id", function(req, res) {
-    const post = new Post({
-        _id: req.params.id,
-        title: req.body.title,
-        content: req.body.content,
-        date: req.body.date
-    })
-    Post.replaceOne({_id: req.params.id}, post)
-        .then(result => {
-            res.status(200).json({post: result})
+    const newFeaturedValue = !JSON.parse(req.query.featured);
+
+    Post.updateOne(
+            {_id: req.params.id}, 
+            { $set: { featured: newFeaturedValue } })
+        .then(()=> {
+            res.status(200).json({ message: "Post updated succesfully"})
         }).catch(e=> {
             console.log(e)
+            res.status(500).json({ message: "Internal server error" })
         })
 })
 

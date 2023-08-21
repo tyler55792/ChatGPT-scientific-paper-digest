@@ -194,6 +194,7 @@
   gap: 12px;
   height: 100%;
   overflow-y: auto;
+  scroll-behavior: smooth;
 }
 
 .user {
@@ -221,11 +222,28 @@
   padding: 12px;
 }
 
+.loading {
+  display: flex;
+  justify-content: left;
+  margin-right: 5vw;
+}
+
+.loading p {
+  background-color: var(--header-color);
+  border-radius: 20px;
+  padding: 12px;
+}
+
+.inactive {
+  display: none;
+}
+
 .query-field {
   height: 50px;
   width: 100%;
   align-items: end;
   display: flex;
+  padding-top: 12px;
 }
 
 .query-input {

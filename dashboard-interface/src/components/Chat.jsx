@@ -2,6 +2,7 @@ import Header from "./Header.jsx"
 import { useParams } from "react-router-dom"
 import { useEffect } from "react"
 import { useState } from "react"
+import { useRef } from "react"
 
 
 function Chat() {
@@ -10,6 +11,7 @@ function Chat() {
     const [query, setQuery] = useState('');
     const [chatHistory, setChatHistory] = useState([]);
     const [loadingClass, setLoadingClass] = useState('loading inactive')
+    const chatHistoryRef = useRef(null);
 
     useEffect(() => {
         // GET request
@@ -23,22 +25,26 @@ function Chat() {
             })
     }, []);
 
+    useEffect(() => {
+        scrollToBottom();
+    }, [chatHistory, loadingClass]);
+
+    const scrollToBottom = () => {
+        chatHistoryRef.current.scrollTop = chatHistoryRef.current.scrollHeight;
+    }
+
     const submitClick = async () => {
         const newChatHistory = [...chatHistory, 
             {
                 "role": "user",
                 "content": query
-            },
-            {
-                "role": "assistant",
-                "content": "...Querying..."
             }];
         setChatHistory(newChatHistory);
         setQuery('');
         setLoadingClass('loading');
         
         // send the last 5 messages as context with with current query
-        const contextChatHistory = chatHistory.slice(0,-1).slice(-6);
+        const contextChatHistory = chatHistory.slice(-6);
         const queryObj = {
             sourceId: postObj.sourceID,
             messages: [...contextChatHistory, {
@@ -89,12 +95,15 @@ function Chat() {
             >
             </object>
             <div className="GPT-box">
-                <div className="chat-history">
+                <div className="chat-history" ref={chatHistoryRef}>
                     {chatHistory.map((obj, index) => (
                         <div key={index} className={obj.role}>
                             <p>{obj.content}</p>
                         </div>
                     ))}
+                    <div className={loadingClass}>
+                        <p>...loading...</p>
+                    </div> 
                 </div>
                 <div className="query-field">
                     <input 

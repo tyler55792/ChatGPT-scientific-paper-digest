@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-function Article({id, title, content, date, sourceID, deleteClick}) {
-
+function Article({id, title, content, date, sourceID, featured, updateClick, deleteClick}) {
+    const featuredButtonText = featured ? "Unfeature" : "Feature";
     return (
       <div className="article-container">    
         <div className="article-date">
@@ -17,6 +17,9 @@ function Article({id, title, content, date, sourceID, deleteClick}) {
         <Link to={`/${id}`} className="chat-link">
             Ask GPT
         </Link>
+        <button onClick={() => updateClick(id, featured)} className="feature-button">
+            {featuredButtonText}
+        </button>
         <button onClick={() => deleteClick(id, sourceID)} className="delete-button">
             Delete
         </button>
@@ -30,6 +33,8 @@ Article.propTypes = {
     title: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired,
     sourceID: PropTypes.string,
+    featured: PropTypes.bool.isRequired,
+    updateClick: PropTypes.func.isRequired,
     deleteClick: PropTypes.func.isRequired,
 };
   
