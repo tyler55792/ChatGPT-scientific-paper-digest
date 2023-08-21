@@ -89,8 +89,16 @@
   word-wrap: break-word;
 }
 
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
 .delete-button {
-  width: 50px;
+  font-size: 15px;
+  width: 80px;
   height: 30px;
   background: none;
   color: var(--header-color);
@@ -104,7 +112,24 @@
   color: black;
 }
 
+.feature-button {
+  font-size: 15px;
+  width: 80px;
+  height: 30px;
+  background: none;
+  color: var(--header-color);
+  border: 1px solid black;
+  background-color: black;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.feature-button:hover {
+  background-color: var(--header-color);
+  color: black;
+}
+
 .chat-link {
+  font-size: 15px;
   text-decoration: none;
   color: var(--header-color);
   background-color: black;

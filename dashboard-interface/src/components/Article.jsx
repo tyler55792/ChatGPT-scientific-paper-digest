@@ -14,15 +14,17 @@ function Article({id, title, content, date, sourceID, featured, updateClick, del
         <div className="article-content">
             {content}
         </div>
-        <Link to={`/${id}`} className="chat-link">
-            Ask GPT
-        </Link>
-        <button onClick={() => updateClick(id, featured)} className="feature-button">
-            {featuredButtonText}
-        </button>
-        <button onClick={() => deleteClick(id, sourceID)} className="delete-button">
-            Delete
-        </button>
+        <div className='buttons'>
+            <button onClick={() => updateClick(id, featured)} className="feature-button">
+                {featuredButtonText}
+            </button>
+            <Link to={`/${id}`} className="chat-link">
+                Ask GPT
+            </Link>
+            <button onClick={() => deleteClick(id, sourceID)} className="delete-button">
+                Delete
+            </button>
+        </div>
       </div>
     )
 }

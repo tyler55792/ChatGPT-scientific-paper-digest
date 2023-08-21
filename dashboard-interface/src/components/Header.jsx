@@ -10,7 +10,7 @@ function Header() {
                     Featured
                 </Link>
                 <Link to="/" className="blog">
-                    Blog
+                    Browse
                 </Link>
                 <Link to="/create" className="create">
                     Create

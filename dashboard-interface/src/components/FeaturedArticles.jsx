@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import Article from "./Article.jsx"
 
-function Articles() {
+function FeaturedArticles() {
     const [articles, setArticles] = useState([]);
 
     useEffect(() => {
@@ -49,26 +49,29 @@ function Articles() {
             console.log('Error: ', e)
         }
     }
-    
+
     return (
         <div className="articles-body">
             <div className='latest-stories'>
-                Latest Articles
+                Featured Articles
             </div>
-            {articles.map((post) => {
-                return <Article 
-                    key={post._id} 
-                    title={post.title} 
-                    content={post.content} 
-                    date={post.date} 
-                    id={post._id} 
-                    sourceID={post.sourceID}
-                    featured={post.featured}
-                    deleteClick={deleteClick}
-                    updateClick={updateClick}/>
-            })}
+                {articles
+                    .filter((post) => post.featured === true)
+                    .map((post) => {
+                        return <Article 
+                            key={post._id} 
+                            title={post.title} 
+                            content={post.content} 
+                            date={post.date} 
+                            id={post._id} 
+                            sourceID={post.sourceID}
+                            featured={post.featured}
+                            deleteClick={deleteClick}
+                            updateClick={updateClick}/>
+                    })
+                }
         </div>
     )
 }
   
-export default Articles;
+export default FeaturedArticles;

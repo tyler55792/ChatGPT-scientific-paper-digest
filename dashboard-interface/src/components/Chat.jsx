@@ -33,7 +33,16 @@ function Chat() {
         chatHistoryRef.current.scrollTop = chatHistoryRef.current.scrollHeight;
     }
 
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+          submitClick();
+        }
+      };
+
     const submitClick = async () => {
+        // don't allow empty query
+        if (query === '') return
+
         const newChatHistory = [...chatHistory, 
             {
                 "role": "user",
@@ -111,6 +120,7 @@ function Chat() {
                         className="query-input"
                         value={query}
                         onChange={(e) => setQuery(e.target.value)} 
+                        onKeyDown={handleKeyDown}
                         placeholder="Ask any question..."           
                     />
                     <button onClick={submitClick} className="query-button">
