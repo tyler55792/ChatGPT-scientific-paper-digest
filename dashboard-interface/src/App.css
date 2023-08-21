@@ -1,21 +1,27 @@
+:root {
+  --header-color: rgb(245, 245, 245);
+  --main-back-color: rgb(216, 214, 214);
+  --border-color: gray;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  background-color: rgb(216, 214, 214);
+  background-color: var(--main-back-color);
 }
 
 .header-body {
   display: flex;
   width: 100vw;
   justify-content: space-between;
-  border-bottom: 1px solid gray;
-  background-color: rgb(245, 245, 245);
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--header-color);
 }
 
 .header-body > * {
   padding: 20px 30px 20px 30px;
-  background-color: rgb(245, 245, 245);
+  background-color: var(--header-color);
 }
 
 .logo {
@@ -31,7 +37,7 @@
 .links > * {
   color: black;
   text-decoration: none;
-  background-color: rgb(245, 245, 245);
+  background-color: var(--header-color);
   transition: transform 0.2s;
 }
 
@@ -51,7 +57,7 @@
   flex-direction: row;
   padding-top: 60px;
   padding-bottom: 60px;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid var(--border-color);
   justify-content: space-between;
   align-items: center;
   gap: 15px;
@@ -60,7 +66,7 @@
 .latest-stories {
   padding-top: 40px;
   padding-bottom: 50px;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid var(--border-color);
   font-weight: 900;
   font-size: 35px;
 }
@@ -87,12 +93,33 @@
   width: 50px;
   height: 30px;
   background: none;
-  transition: background-color 0.3s 
+  color: var(--header-color);
+  border: 1px solid black;
+  background-color: black;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .delete-button:hover {
-  background-color: rgb(240, 238, 238);
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  background-color: var(--header-color);
+  color: black;
+}
+
+.chat-link {
+  text-decoration: none;
+  color: var(--header-color);
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 30px;
+  border: 1px solid black;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.chat-link:hover {
+  background-color: var(--header-color);
+  color: black;
 }
 
 
@@ -131,17 +158,97 @@
 }
 
 .create-button:hover {
-  background-color: rgb(240, 238, 238);
+  background-color: var(--header-color);
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* Chat Page */
-.chat-body{
-  display: flex;
+
+
+/* Chat Page  */
+.main-chat{
   width: 100vw;
   height: 100vh;
 }
-.pdf-box {
-  width: 50%;
+
+.chat-body{
+  display: flex;
+  height: calc(100% - 61px);
 }
 
+.pdf-box {
+  width: 50vw;
+}
+
+.GPT-box {
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  padding-right: 15px;
+  width: 50vw;
+  justify-content: end;
+}
+
+.chat-history {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.user {
+  display: flex;
+  justify-content: right;
+  margin-left: 5vw;
+}
+
+.user p {
+  background-color:black;
+  color: var(--header-color);
+  border-radius: 20px;
+  padding: 12px;
+}
+
+.assistant {
+  display: flex;
+  justify-content: left;
+  margin-right: 5vw;
+}
+
+.assistant p {
+  background-color: var(--header-color);
+  border-radius: 20px;
+  padding: 12px;
+}
+
+.query-field {
+  height: 50px;
+  width: 100%;
+  align-items: end;
+  display: flex;
+}
+
+.query-input {
+  background-color: var(--header-color);
+  width: calc(100% - 50px);
+  height: 100%;
+  padding: 10px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.query-button{
+  background-color: black;
+  color: var(--header-color);
+  width: 50px;
+  height: 100%;
+  border-left: none;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.query-button:hover {
+  background-color: var(--header-color);
+  color: black;
+}

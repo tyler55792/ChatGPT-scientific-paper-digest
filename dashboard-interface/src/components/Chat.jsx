@@ -9,6 +9,7 @@ function Chat() {
     const [postObj, setpostObj] = useState({});
     const [query, setQuery] = useState('');
     const [chatHistory, setChatHistory] = useState([]);
+    const [loadingClass, setLoadingClass] = useState('loading inactive')
 
     useEffect(() => {
         // GET request
@@ -23,11 +24,24 @@ function Chat() {
     }, []);
 
     const submitClick = async () => {
+        const newChatHistory = [...chatHistory, 
+            {
+                "role": "user",
+                "content": query
+            },
+            {
+                "role": "assistant",
+                "content": "...Querying..."
+            }];
+        setChatHistory(newChatHistory);
+        setQuery('');
+        setLoadingClass('loading');
+        
+        // send the last 5 messages as context with with current query
+        const contextChatHistory = chatHistory.slice(0,-1).slice(-6);
         const queryObj = {
             sourceId: postObj.sourceID,
-
-            // TODO: limit messages to 6 
-            messages: [...chatHistory, {
+            messages: [...contextChatHistory, {
                 "role": "user",
                 "content": query
             }]
@@ -45,17 +59,17 @@ function Chat() {
             if (response.ok) {
                 console.log('Query was successful');
                 const responseData = await response.json();
-                const newChatHistory = [...chatHistory, 
+                const newChatHistory = [...chatHistory,
                     {
                         "role": "user",
-                        "content": query
-                    }, 
+                        content: query
+                    },
                     {
                         "role": "assistant",
                         "content": responseData.content
                     }];
                 setChatHistory(newChatHistory);
-                setQuery('');
+                setLoadingClass('loading inactive')
             } else {
                 console.error('Query request failed');
             }
@@ -65,7 +79,7 @@ function Chat() {
     };
 
     return (
-      <>
+      <div className="main-chat">
         <Header />
         <div className='chat-body'>
             <object 
@@ -77,25 +91,27 @@ function Chat() {
             <div className="GPT-box">
                 <div className="chat-history">
                     {chatHistory.map((obj, index) => (
-                        <div key={index} className={obj.role}>{obj.content}</div>
+                        <div key={index} className={obj.role}>
+                            <p>{obj.content}</p>
+                        </div>
                     ))}
                 </div>
                 <div className="query-field">
-                    <textarea 
+                    <input 
                         type="text" 
                         className="query-input"
                         value={query}
                         onChange={(e) => setQuery(e.target.value)} 
                         placeholder="Ask any question..."           
                     />
-                <button onClick={submitClick} className="query-button">
-                    Query
-                </button>
+                    <button onClick={submitClick} className="query-button">
+                        Query
+                    </button>
                 </div>
 
             </div>
         </div>
-      </>
+      </div>
     )
 }
   

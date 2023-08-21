@@ -14,7 +14,7 @@ function Article({id, title, content, date, sourceID, deleteClick}) {
         <div className="article-content">
             {content}
         </div>
-        <Link to={`/${id}`} className="chatLink">
+        <Link to={`/${id}`} className="chat-link">
             Ask GPT
         </Link>
         <button onClick={() => deleteClick(id, sourceID)} className="delete-button">
