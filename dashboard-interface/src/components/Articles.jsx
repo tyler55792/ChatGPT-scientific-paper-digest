@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
 import Article from "./Article.jsx"
+import PropTypes from 'prop-types';
 
-function Articles() {
+function Articles({showFeaturedOnly=false}) {
     const [articles, setArticles] = useState([]);
 
     useEffect(() => {
@@ -50,25 +51,56 @@ function Articles() {
         }
     }
 
-    return (
-      <div className="articles-body">
-        <div className='latest-stories'>
-            Latest Stories
-        </div>
-        {articles.map((post) => {
-            return <Article 
-                key={post._id} 
-                title={post.title} 
-                content={post.content} 
-                date={post.date} 
-                id={post._id} 
-                sourceID={post.sourceID}
-                featured={post.featured}
-                deleteClick={deleteClick}
-                updateClick={updateClick}/>
-        })}
-      </div>
-    )
+    const title = showFeaturedOnly ? "Featured Articles" : "Latest Articles"
+
+    if (showFeaturedOnly) {
+        return (
+            <div className="articles-body">
+                <div className='latest-stories'>
+                    {title}
+                </div>
+                    {articles
+                        .filter((post) => post.featured === true)
+                        .map((post) => {
+                            return <Article 
+                                key={post._id} 
+                                title={post.title} 
+                                content={post.content} 
+                                date={post.date} 
+                                id={post._id} 
+                                sourceID={post.sourceID}
+                                featured={post.featured}
+                                deleteClick={deleteClick}
+                                updateClick={updateClick}/>
+                        })
+                    }
+            </div>
+        )
+    } else {
+        return (
+            <div className="articles-body">
+                <div className='latest-stories'>
+                    {title}
+                </div>
+                {articles.map((post) => {
+                    return <Article 
+                        key={post._id} 
+                        title={post.title} 
+                        content={post.content} 
+                        date={post.date} 
+                        id={post._id} 
+                        sourceID={post.sourceID}
+                        featured={post.featured}
+                        deleteClick={deleteClick}
+                        updateClick={updateClick}/>
+                })}
+            </div>
+        )
+    }
 }
+
+Articles.propTypes = {
+    showFeaturedOnly: PropTypes.bool
+};
   
 export default Articles;

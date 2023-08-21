@@ -6,6 +6,9 @@ function Header() {
         <div className="header-body">
             <img src="../../public/blogLogo.png" className="logo"/>
             <div className='links'>
+                <Link to="/featured" className="featured">
+                    Featured
+                </Link>
                 <Link to="/" className="blog">
                     Blog
                 </Link>
