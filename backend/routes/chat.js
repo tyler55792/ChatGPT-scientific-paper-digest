@@ -4,7 +4,7 @@ const axios = require("axios");
 
 const router = express.Router();
 
-// query chatPDF 
+// Query chatPDF 
 // Guidance from chatPDF's API documentaiton
 const queryGPT = async (dataObj) => {
     try {
@@ -31,7 +31,7 @@ const queryGPT = async (dataObj) => {
 
 router.post("/", async function(req, res) {
     try {
-        // chatPDF response to query
+        // Get ChatPDF's response to user query
         const responseObj = await queryGPT(req.body);
 
         res.status(201).json(responseObj);

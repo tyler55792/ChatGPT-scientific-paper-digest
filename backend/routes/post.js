@@ -4,8 +4,8 @@ const axios = require("axios");
 
 const router = express.Router();
 
-// Store PDF in database using chatPDF's API
-// Guidance from chatPDF's API documentaiton
+// Store PDF in ChatPDF's database using API
+// Guidance from ChatPDF's API documentaiton 
 const storePDF = async (pdfUrl) => {
     try {
         const config = {
@@ -28,8 +28,8 @@ const storePDF = async (pdfUrl) => {
     }
 };
 
-// Delete PDF from database using chatPDF's API
-// Guidance from chatPDF's API documentaiton
+// Delete PDF from ChatPDF's database using API
+// Guidance from ChatPDF's API documentaiton
 const deletePDF = async (sourceID) => {
     try {
         const config = {
@@ -55,7 +55,7 @@ const deletePDF = async (sourceID) => {
 // CREATE OPERATION
 router.post("/", async function(req, res) {
     try {
-        // get reference to stored PDF in chatPDF
+        // Get reference to PDF in chatPDF's database
         const sourceID = await storePDF(req.body.url);
 
         const post = new Post({
@@ -83,7 +83,7 @@ router.post("/", async function(req, res) {
 });
 
 
-// READ OPERATION
+// READ OPERATIONS
 router.get("/", function(req, res) {
     Post.find().sort({date: -1})
         .then(posts => {
@@ -127,7 +127,7 @@ router.put("/:id", function(req, res) {
 
 // DELETE OPERAITON
 router.delete("/:id", function(req, res) {
-    // delete from MongoDB 
+    // Delete from MongoDB 
     Post.deleteOne({_id: req.params.id})
         .then(() => {
             res.status(200).json({message: "Post deleted succesfully"})
@@ -136,7 +136,7 @@ router.delete("/:id", function(req, res) {
             res.status(500).json({message: "Internal server error"})
         })
     
-    // delete from chatPDF databse
+    // Delete from chatPDF's database
     const source = req.query.sourceID;
     deletePDF(source);
 })

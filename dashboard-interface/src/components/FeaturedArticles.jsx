@@ -9,10 +9,10 @@ function FeaturedArticles() {
         fetch('http://localhost:3000/api/posts')
             .then(response => response.json())
             .then(data => {
-                setArticles(data.posts)
+                setArticles(data.posts);
             })
             .catch(error => {
-                console.error('Error: ', error)
+                console.error('Error: ', error);
             })
     }, [articles]);
 
@@ -22,7 +22,6 @@ function FeaturedArticles() {
                 `http://localhost:3000/api/posts/${id}?sourceID=${sourceID}`,
                 { method:"DELETE" });
             if (response.ok) {
-                //update page
                 const updatedArticles = articles.filter(article => article.id !== id);
                 setArticles(updatedArticles);
                 console.log('Delete was successful');
@@ -30,7 +29,7 @@ function FeaturedArticles() {
                 console.error('Delete request failed');
             }
         } catch (error) {
-            console.log('Error:', error)
+            console.log('Error:', error);
         }
     }
 
@@ -40,13 +39,12 @@ function FeaturedArticles() {
                 `http://localhost:3000/api/posts/${id}?featured=${featured}`,
                 { method: "PUT"});
             if (response.ok) {
-                //update page
                 console.log('Update succcessful');
             } else {
                 console.error('Update request failed');
             }
         } catch (error) {
-            console.log('Error: ', error)
+            console.log('Error: ', error);
         }
     }
 
@@ -55,21 +53,21 @@ function FeaturedArticles() {
             <div className='latest-stories'>
                 Featured
             </div>
-                {articles
-                    .filter((post) => post.featured === true)
-                    .map((post) => {
-                        return <Article 
-                            key={post._id} 
-                            title={post.title} 
-                            content={post.content} 
-                            date={post.date} 
-                            id={post._id} 
-                            sourceID={post.sourceID}
-                            featured={post.featured}
-                            deleteClick={deleteClick}
-                            updateClick={updateClick}/>
-                    })
-                }
+            {articles
+                .filter((post) => post.featured === true)
+                .map((post) => {
+                    return <Article 
+                        key={ post._id } 
+                        title={ post.title } 
+                        content={ post.content } 
+                        date={ post.date } 
+                        id={ post._id } 
+                        sourceID={ post.sourceID }
+                        featured={ post.featured }
+                        deleteClick={ deleteClick }
+                        updateClick={ updateClick }/>
+                })
+            }
         </div>
     )
 }

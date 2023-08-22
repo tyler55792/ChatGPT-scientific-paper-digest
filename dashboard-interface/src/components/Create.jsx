@@ -40,55 +40,55 @@ function Create() {
     };
 
     return (
-      <>
-        <Header />
-        <div className="articles-body">
-            <div className='latest-stories'>
-                Create
+        <>
+            <Header />
+            <div className="articles-body">
+                <div className='latest-stories'>
+                    Create
+                </div>
             </div>
-        </div>
-        <div className='create-body'>
-            <div className="date-field">
-                <div>Date</div>
-                <textarea 
-                    type="text" 
-                    className="date-input"
-                    value={date}
-                    onChange={(e) => setDate(e.target.value)}
-                />
+            <div className='create-body'>
+                <div className="date-field">
+                    <div>Date</div>
+                    <textarea 
+                        type="text" 
+                        className="date-input"
+                        value={date}
+                        onChange={(e) => setDate(e.target.value)}
+                    />
+                </div>
+                <div className="title-field">
+                    <div>Title</div>
+                    <textarea 
+                        type="text" 
+                        className="title-input"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                    />
+                </div>
+                <div className="content-field">
+                    <div>Content</div>
+                    <textarea 
+                        type="text" 
+                        className="content-input"
+                        value={content}
+                        onChange={(e) => setContent(e.target.value)}            
+                    />
+                </div>
+                <div className="url-field">
+                    <div>URL</div>
+                    <textarea 
+                        type="text" 
+                        className="url-input"
+                        value={url}
+                        onChange={(e) => setUrl(e.target.value)}
+                    />
+                </div>
+                <button onClick={submitClick} className="create-button">
+                    Post
+                </button>
             </div>
-            <div className="title-field">
-                <div>Title</div>
-                <textarea 
-                    type="text" 
-                    className="title-input"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                />
-            </div>
-            <div className="content-field">
-                <div>Content</div>
-                <textarea 
-                    type="text" 
-                    className="content-input"
-                    value={content}
-                    onChange={(e) => setContent(e.target.value)}            
-                />
-            </div>
-            <div className="url-field">
-                <div>URL</div>
-                <textarea 
-                    type="text" 
-                    className="url-input"
-                    value={url}
-                    onChange={(e) => setUrl(e.target.value)}
-                />
-            </div>
-            <button onClick={submitClick} className="create-button">
-                Post
-            </button>
-        </div>
-      </>
+        </>
     )
 }
   

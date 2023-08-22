@@ -10,7 +10,7 @@ function Chat() {
     const [postObj, setpostObj] = useState({});
     const [query, setQuery] = useState('');
     const [chatHistory, setChatHistory] = useState([]);
-    const [loadingClass, setLoadingClass] = useState('loading inactive')
+    const [loadingClass, setLoadingClass] = useState('loading inactive');
     const chatHistoryRef = useRef(null);
 
     useEffect(() => {
@@ -18,10 +18,10 @@ function Chat() {
         fetch(`http://localhost:3000/api/posts/${id}`)
             .then(response => response.json())
             .then(data => {
-                setpostObj(data.post)
+                setpostObj(data.post);
             })
             .catch(error => {
-                console.error('Error: ', error)
+                console.error('Error: ', error);
             })
     }, []);
 
@@ -40,8 +40,8 @@ function Chat() {
       };
 
     const submitClick = async () => {
-        // don't allow empty query
-        if (query === '') return
+        // Don't allow empty query
+        if (query === '') return;
 
         const newChatHistory = [...chatHistory, 
             {
@@ -52,12 +52,12 @@ function Chat() {
         setQuery('');
         setLoadingClass('loading');
         
-        // send the last 5 messages as context with with current query
+        // Send the last 5 messages as context with new query
         const contextChatHistory = newChatHistory.slice(-6);
         const queryObj = {
             sourceId: postObj.sourceID,
             messages: contextChatHistory
-        }
+        };
         
         try {
             const response = await fetch('http://localhost:3000/api/chat', {
@@ -76,7 +76,7 @@ function Chat() {
                         "content": responseData.content
                     }];
                 setChatHistory(newChatHistory2);
-                setLoadingClass('loading inactive')
+                setLoadingClass('loading inactive');
             } else {
                 console.error('Query request failed');
             }
@@ -86,43 +86,42 @@ function Chat() {
     };
 
     return (
-      <div className="main-chat">
-        <Header />
-        <div className='chat-body'>
-            <object 
-                type="application/pdf"
-                data={postObj.url}
-                className="pdf-box"
-            >
-            </object>
-            <div className="GPT-box">
-                <div className="chat-history" ref={chatHistoryRef}>
-                    {chatHistory.map((obj, index) => (
-                        <div key={index} className={obj.role}>
-                            <p>{obj.content}</p>
-                        </div>
-                    ))}
-                    <div className={loadingClass}>
-                        <p>...loading...</p>
-                    </div> 
+        <div className="main-chat">
+            <Header />
+            <div className='chat-body'>
+                <object 
+                    type="application/pdf"
+                    data={ postObj.url }
+                    className="pdf-box"
+                >
+                </object>
+                <div className="GPT-box">
+                    <div className="chat-history" ref={ chatHistoryRef }>
+                        {chatHistory.map((obj, index) => (
+                            <div key={ index } className={ obj.role }>
+                                <p>{ obj.content }</p>
+                            </div>
+                        ))}
+                        <div className={ loadingClass }>
+                            <p>...loading...</p>
+                        </div> 
+                    </div>
+                    <div className="query-field">
+                        <input 
+                            type="text" 
+                            className="query-input"
+                            value={ query }
+                            onChange={ (e) => setQuery(e.target.value) } 
+                            onKeyDown={ handleKeyDown }
+                            placeholder="Ask any question..."           
+                        />
+                        <button onClick={ submitClick } className="query-button">
+                            Query
+                        </button>
+                    </div>
                 </div>
-                <div className="query-field">
-                    <input 
-                        type="text" 
-                        className="query-input"
-                        value={query}
-                        onChange={(e) => setQuery(e.target.value)} 
-                        onKeyDown={handleKeyDown}
-                        placeholder="Ask any question..."           
-                    />
-                    <button onClick={submitClick} className="query-button">
-                        Query
-                    </button>
-                </div>
-
             </div>
         </div>
-      </div>
     )
 }
   

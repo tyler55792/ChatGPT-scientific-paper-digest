@@ -6,25 +6,25 @@ import Featured from "./Featured.jsx";
 
 const Router = () => {
     const router = createBrowserRouter([
-      {
-        path: "/",
-        element: <Browse />,
-      },
-      {
-        path: "/featured",
-        element: <Featured />
-      },
-      {
-        path: "/create",
-        element: <Create />,
-      },
-    {
-        path: "/:id",
-        element: <Chat />
-      }  
+        {
+          path: "/",
+          element: <Browse />,
+        },
+        {
+          path: "/featured",
+          element: <Featured />
+        },
+        {
+          path: "/create",
+          element: <Create />,
+        },
+        {
+          path: "/:id",
+          element: <Chat />
+        }  
     ]);
   
-    return <RouterProvider router={router} />;
-  };
+    return <RouterProvider router={router} />
+};
   
-  export default Router;
+export default Router;
