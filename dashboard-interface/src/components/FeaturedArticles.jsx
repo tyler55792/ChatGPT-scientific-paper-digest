@@ -6,7 +6,7 @@ function FeaturedArticles() {
 
     useEffect(() => {
         // GET request
-        fetch('http://localhost:3000/api/posts')
+        fetch('https://gpt-backend-kcv6.onrender.com/api/posts')
             .then(response => response.json())
             .then(data => {
                 setArticles(data.posts);
@@ -19,7 +19,7 @@ function FeaturedArticles() {
     const deleteClick = async (id, sourceID) => {
         try {
             const response = await fetch(
-                `http://localhost:3000/api/posts/${id}?sourceID=${sourceID}`,
+                `https://gpt-backend-kcv6.onrender.com/api/posts/${id}?sourceID=${sourceID}`,
                 { method:"DELETE" });
             if (response.ok) {
                 const updatedArticles = articles.filter(article => article.id !== id);
@@ -36,7 +36,7 @@ function FeaturedArticles() {
     const updateClick = async (id, featured) => {
         try {
             const response = await fetch(
-                `http://localhost:3000/api/posts/${id}?featured=${featured}`,
+                `https://gpt-backend-kcv6.onrender.com/api/posts/${id}?featured=${featured}`,
                 { method: "PUT"});
             if (response.ok) {
                 console.log('Update succcessful');

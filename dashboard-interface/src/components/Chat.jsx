@@ -15,7 +15,7 @@ function Chat() {
 
     useEffect(() => {
         // GET request
-        fetch(`http://localhost:3000/api/posts/${id}`)
+        fetch(`https://gpt-backend-kcv6.onrender.com/api/posts/${id}`)
             .then(response => response.json())
             .then(data => {
                 setpostObj(data.post);
@@ -60,7 +60,7 @@ function Chat() {
         };
         
         try {
-            const response = await fetch('http://localhost:3000/api/chat', {
+            const response = await fetch('https://gpt-backend-kcv6.onrender.com/api/chat', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

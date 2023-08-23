@@ -17,7 +17,7 @@ function Create() {
         }
 
         try {
-            const response = await fetch('http://localhost:3000/api/posts', {
+            const response = await fetch('https://gpt-backend-kcv6.onrender.com/api/posts', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
