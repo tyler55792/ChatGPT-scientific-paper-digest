@@ -22,6 +22,7 @@ app.use(bodyParser.json())
 app.use("/api/posts", postRouter)
 app.use("/api/chat", chatRouter)
 
-app.listen(3000, () => {
-    console.log('Listening on port: 3000');
+port = process.env.PORT || 3001
+app.listen(port, () => {
+    console.log(`Listening on port: ${port}`);
 })
