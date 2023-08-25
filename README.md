@@ -2,29 +2,17 @@
 
 ## Background
 
-With a background in chemical engineering, multiple research and development internships, a desire to stay up-to-date with the latest technologies, and an inherent inquisitive nature, I find myself frequently reading research papers. I prefer research papers over random internet articles because I have greater confidence in conclusions drawn from peer-reviewed scientific studies rather than from random online sources.
+With a B.S. in Chemical Engineering, multiple research and development internships, and a desire to stay up-to-date with the latest technologies, I find myself frequently reading research papers. I prefer research papers over random internet articles because I have greater confidence in conclusions drawn from peer-reviewed scientific studies rather than from random online sources. However, the challenge of reading research papers is that comprehending them often requires a specific level of domain knowledge. Attempting to acquire this knowledge through Google searches can be a very tedious process, given the niche nature of scientific articles. Fortunately, ChatGPT is very effective at answering niche questions. The only limitation with ChatGPT is that you cannot currently upload or paste large PDFs into a ChatGPT query, as there's a limited amount of text that can be processed per query. This is precisely where the combination of ChatGPT and my application comes in!
 
-However, the challenge of reading research papers is that comprehending them often requires a specific level of domain knowledge. Attempting to acquire this knowledge through Google searches can be a very tedious process, given the niche nature of scientific articles.
+## How it Works
 
-On the other hand, ChatGPT is very effective at answering niche questions. The only limitation with ChatGPT is that you cannot currently upload or paste large PDFs into a ChatGPT query, as there's a limited amount of text that can be processed per query.
+The application allows users to upload and organize a library of scientific articles. The application then feeds these user-uploaded articles to ChatGPT, and users can essentially ask ChatGPT questions related to a specific document. This tool has exponentially accelerated my ability to read scientific papers and study high-level topics. 
 
-This is precisely where the combination of ChatGPT and my application becomes exceedingly helpful
+The project comprises two front-end interfaces: a dashboard interface for creating, reading, updating, and deleting articles on the app, and separate read-only user interface for viewers to read and chat with scientific articles uploaded from the dashboard. Click below to view the read-only interface hosted on Netlify! Both front-ends communicate with the back-end via REST API endpoints. The back-end, hosted on Render, queries and manipulates data in both a MongoDB database and a ChatPDF database.
 
-## What it does
+👉 [DEMO: Check out the read-only UI](https://64e7f3b35f074e0008f3b694--rococo-choux-cbe33a.netlify.app/) 👈
 
-The application allows users to upload and organize a library of scientific articles. The application then feeds these user-uploaded articles to ChatGPT, and users can essentially ask ChatGPT questions related to a specific document. This is exceptionally useful because now the niche context of a scientific article can be digested by ChatGPT, and users can utilize AI to quickly learn the key points of a complex article. This tool has exponentially accelerated my ability to read scientific papers and study high-level topics. 
-
-## How I built it
-
-Tech stack: MongoDB, Express, React, Node.js
-
-The project comprises two front-end interfaces: a dashboard interface for creating, reading, updating, and deleting articles on the app, and separate read-only user interface for viewers to read and chat with scientific articles uploaded from the dashboard. 
-
-Both front-ends communicate with the back-end via REST API endpoints. The back-end, hosted on Render, queries and manipulates data in both a MongoDB database and a ChatPDF database.
-
-[Check out the user interface](link)
-
-Watch the dashboard interface demo:
+Watch a demo of the dashboard UI:
 ![Dashboard-interface demo](https://drive.google.com/uc?export=view&id=11VB55ObJa_2FQtei6QaeKBg_pPBOUSlJ)
 
 ## Example Use Cases
@@ -35,7 +23,7 @@ When a user submits a query regarding one of the uploaded scientific papers, the
 
 ## ChatPDF
 
-[Check out ChatPDF's API documentation here.](link)
+[Check out ChatPDF's API documentation here.](https://www.chatpdf.com/docs/api/backend)
 
 ChatPDF works by breaking down large documents into smaller chunks of text, embedding these chunks (with OpenAI embeddings), and storing them in a database. When a user submits a query related to a document, a semantic search is performed on the document's database to find chunks from the document that are most relevant to the user's query. The query and its relevant chunks are then paired and sent to a generative LLM (ChatGPT) to produce a response for the user.
 
@@ -44,6 +32,8 @@ This process is necessary to ask ChatGPT questions based on large research artic
 As a result, there are some inherent limitations to this method. Since ChatGPT cannot read the entire document at once, it struggles to provide comprehensive summaries of entire documents and can occasionally produce inaccurate responses. It excels more with specific questions about certain sections or concepts within a document.
 
 ## Notes
+* Tech stack: MongoDB, Express, React, Node.js
+
 * This implementation is completely free up to 500 messages and 5000 pages a month. So feel free to try it out!
 
 * Uploaded PDFs must be under 2000 pages in length.
