@@ -10,7 +10,7 @@ The application allows users to upload and organize a library of scientific arti
 
 The project comprises two front-end interfaces: a dashboard interface for creating, reading, updating, and deleting articles on the app, and separate read-only user interface for viewers to read and chat with scientific articles uploaded from the dashboard. Click below to view the read-only interface hosted on Netlify! Both front-ends communicate with the back-end via REST API endpoints. The back-end, hosted on Render, queries and manipulates data in both a MongoDB database and a ChatPDF database.
 
-👉 [DEMO: Check out the read-only UI](https://64e7f3b35f074e0008f3b694--rococo-choux-cbe33a.netlify.app/) 👈 ❗NOTE THAT THE FREE TIER OF RENDER, THE PAAS WHERE I HAVE HOSTED MY SERVER, CAN TAKE UP TO 15 SECONDS TO RESPOND INITIALLY❗
+👉 [DEMO: Check out the read-only UI](https://64e7f3b35f074e0008f3b694--rococo-choux-cbe33a.netlify.app/) 👈 ❗NOTE THAT THE FREE TIER OF RENDER, THE PAAS WHERE I HAVE HOSTED MY SERVER, CAN TAKE UP TO 30 SECONDS TO RESPOND INITIALLY❗
 
 Watch a demo of the dashboard UI:
 ![Dashboard-interface demo](https://drive.google.com/uc?export=view&id=11VB55ObJa_2FQtei6QaeKBg_pPBOUSlJ)
